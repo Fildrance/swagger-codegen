@@ -120,17 +120,7 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
 
         postBody = body; // http body (model) parameter
 
-        // authentication setting, if any
-        string[] authSettings = new string[] { "petstore_auth" };
-
-        await CallApi(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling AddPet: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling AddPet: " + response.ErrorMessage, response.ErrorMessage);
-*/
-        
+        await CallApi(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
     /// <inheritdoc />     
@@ -152,17 +142,7 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
 
          if (apiKey != null) headerParams.Add("api_key", ParameterToString(apiKey)); // header parameter
         
-        // authentication setting, if any
-        string[] authSettings = new string[] { "petstore_auth" };
-
-        await CallApi(path.ToString(), HttpMethod.Delete, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling DeletePet: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling DeletePet: " + response.ErrorMessage, response.ErrorMessage);
-*/
-        
+        await CallApi(path.ToString(), HttpMethod.Delete, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
     /// <inheritdoc />     
@@ -183,16 +163,8 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
 
          if (status != null) queryParams.Add("status", ParameterToString(status)); // query parameter
         
-        // authentication setting, if any
-        string[] authSettings = new string[] { "petstore_auth" };
-
-        var response = await CallApi<List<Pet>>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling FindPetsByStatus: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling FindPetsByStatus: " + response.ErrorMessage, response.ErrorMessage);
-*/
+        var response = await CallApi<List<Pet>>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        
         return response;
     }
 
@@ -214,16 +186,8 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
 
          if (tags != null) queryParams.Add("tags", ParameterToString(tags)); // query parameter
         
-        // authentication setting, if any
-        string[] authSettings = new string[] { "petstore_auth" };
-
-        var response = await CallApi<List<Pet>>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling FindPetsByTags: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling FindPetsByTags: " + response.ErrorMessage, response.ErrorMessage);
-*/
+        var response = await CallApi<List<Pet>>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        
         return response;
     }
 
@@ -245,16 +209,8 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
         object postBody = null;
 
         
-        // authentication setting, if any
-        string[] authSettings = new string[] { "api_key" };
-
-        var response = await CallApi<Pet>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling GetPetById: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling GetPetById: " + response.ErrorMessage, response.ErrorMessage);
-*/
+        var response = await CallApi<Pet>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        
         return response;
     }
 
@@ -276,17 +232,7 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
 
         postBody = body; // http body (model) parameter
 
-        // authentication setting, if any
-        string[] authSettings = new string[] { "petstore_auth" };
-
-        await CallApi(path.ToString(), HttpMethod.Put, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling UpdatePet: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling UpdatePet: " + response.ErrorMessage, response.ErrorMessage);
-*/
-        
+        await CallApi(path.ToString(), HttpMethod.Put, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
     /// <inheritdoc />     
@@ -309,17 +255,7 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
         if (name != null) formParams.Add("name", ParameterToString(name)); // form parameter
         if (status != null) formParams.Add("status", ParameterToString(status)); // form parameter
         
-        // authentication setting, if any
-        string[] authSettings = new string[] { "petstore_auth" };
-
-        await CallApi(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling UpdatePetWithForm: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling UpdatePetWithForm: " + response.ErrorMessage, response.ErrorMessage);
-*/
-        
+        await CallApi(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
     /// <inheritdoc />     
@@ -342,16 +278,8 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
         if (additionalMetadata != null) formParams.Add("additionalMetadata", ParameterToString(additionalMetadata)); // form parameter
         if (_file != null) fileParams.Add("file", ParameterToFile("file", _file));
         
-        // authentication setting, if any
-        string[] authSettings = new string[] { "petstore_auth" };
-
-        var response = await CallApi<ApiResponse>(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling UploadFile: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling UploadFile: " + response.ErrorMessage, response.ErrorMessage);
-*/
+        var response = await CallApi<ApiResponse>(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        
         return response;
     }
 

@@ -69,17 +69,9 @@ public partial class {{classname}} : {{apiClientBaseTypeName}}, I{{classname}}
         {{/formParams}}{{#bodyParam}}postBody = {{paramName}}; // http body (model) parameter
         {{/bodyParam}}
 
-        // authentication setting, if any
-        string[] authSettings = new string[] { {{#authMethods}}"{{name}}"{{#hasMore}}, {{/hasMore}}{{/authMethods}} };
-
-        {{#returnType}}var response = {{/returnType}}await CallApi{{#returnType}}<{{{returnType}}}>{{/returnType}}(path.ToString(), HttpMethod.{{#lambda.pascalcase}}{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}{{/lambda.pascalcase}}, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new {{exceptionTypeName}} ((int)response.StatusCode, "Error calling {{nickname}}: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new {{exceptionTypeName}} ((int)response.StatusCode, "Error calling {{nickname}}: " + response.ErrorMessage, response.ErrorMessage);
-*/
-        {{#returnType}}return response;{{/returnType}}
+        {{#returnType}}var response = {{/returnType}}await CallApi{{#returnType}}<{{{returnType}}}>{{/returnType}}(path.ToString(), HttpMethod.{{#lambda.pascalcase}}{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}{{/lambda.pascalcase}}, queryParams, postBody, headerParams, formParams, fileParams, ct);{{#returnType}}
+        
+        return response;{{/returnType}}
     }
 
     {{/operation}}

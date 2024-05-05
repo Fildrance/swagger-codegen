@@ -116,17 +116,7 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
 
         postBody = body; // http body (model) parameter
 
-        // authentication setting, if any
-        string[] authSettings = new string[] {  };
-
-        await CallApi(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling CreateUser: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling CreateUser: " + response.ErrorMessage, response.ErrorMessage);
-*/
-        
+        await CallApi(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
     /// <inheritdoc />     
@@ -147,17 +137,7 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
 
         postBody = body; // http body (model) parameter
 
-        // authentication setting, if any
-        string[] authSettings = new string[] {  };
-
-        await CallApi(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling CreateUsersWithArrayInput: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling CreateUsersWithArrayInput: " + response.ErrorMessage, response.ErrorMessage);
-*/
-        
+        await CallApi(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
     /// <inheritdoc />     
@@ -178,17 +158,7 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
 
         postBody = body; // http body (model) parameter
 
-        // authentication setting, if any
-        string[] authSettings = new string[] {  };
-
-        await CallApi(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling CreateUsersWithListInput: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling CreateUsersWithListInput: " + response.ErrorMessage, response.ErrorMessage);
-*/
-        
+        await CallApi(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
     /// <inheritdoc />     
@@ -209,17 +179,7 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
         object postBody = null;
 
         
-        // authentication setting, if any
-        string[] authSettings = new string[] {  };
-
-        await CallApi(path.ToString(), HttpMethod.Delete, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling DeleteUser: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling DeleteUser: " + response.ErrorMessage, response.ErrorMessage);
-*/
-        
+        await CallApi(path.ToString(), HttpMethod.Delete, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
     /// <inheritdoc />     
@@ -240,16 +200,8 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
         object postBody = null;
 
         
-        // authentication setting, if any
-        string[] authSettings = new string[] {  };
-
-        var response = await CallApi<User>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling GetUserByName: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling GetUserByName: " + response.ErrorMessage, response.ErrorMessage);
-*/
+        var response = await CallApi<User>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        
         return response;
     }
 
@@ -275,16 +227,8 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
          if (username != null) queryParams.Add("username", ParameterToString(username)); // query parameter
          if (password != null) queryParams.Add("password", ParameterToString(password)); // query parameter
         
-        // authentication setting, if any
-        string[] authSettings = new string[] {  };
-
-        var response = await CallApi<string>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling LoginUser: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling LoginUser: " + response.ErrorMessage, response.ErrorMessage);
-*/
+        var response = await CallApi<string>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        
         return response;
     }
 
@@ -302,17 +246,7 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
         object postBody = null;
 
         
-        // authentication setting, if any
-        string[] authSettings = new string[] {  };
-
-        await CallApi(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling LogoutUser: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling LogoutUser: " + response.ErrorMessage, response.ErrorMessage);
-*/
-        
+        await CallApi(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
     /// <inheritdoc />     
@@ -337,17 +271,7 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
 
         postBody = body; // http body (model) parameter
 
-        // authentication setting, if any
-        string[] authSettings = new string[] {  };
-
-        await CallApi(path.ToString(), HttpMethod.Put, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling UpdateUser: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling UpdateUser: " + response.ErrorMessage, response.ErrorMessage);
-*/
-        
+        await CallApi(path.ToString(), HttpMethod.Put, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
 }
