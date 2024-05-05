@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Globalization;
 using System.Text;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ public abstract class {{apiClientBaseTypeName}}
     protected readonly JsonSerializerOptions _options;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ApiClient" /> class.
+    /// Initializes a new instance of the <see cref="{{apiClientBaseTypeName}}" /> class.
     /// </summary>
     /// <param name="httpClient">Client for making http calls.</param>
     /// <param name="basePath">The base path.</param>
@@ -38,6 +39,7 @@ public abstract class {{apiClientBaseTypeName}}
 
     protected virtual string ContentType => "application/json-patch+json";
     protected virtual string Accept => "application/json";
+    protected virtual IFormatProvider DateTimeFormatForQuery => CultureInfo.CurrentCulture.DateTimeFormat;
 
     /// <summary>
     /// Makes the HTTP request.
@@ -49,23 +51,19 @@ public abstract class {{apiClientBaseTypeName}}
     /// <param name="headerParams">Header parameters.</param>
     /// <param name="formParams">Form parameters.</param>
     /// <param name="fileParams">File parameters.</param>
-    /// <param name="authSettings">Authentication settings.</param>
     /// <param name="ct">Operation cancellation token.</param>
     /// <returns>Result of request.</returns>
-    public async Task<T> CallApi<T>(
+    protected virtual async Task<T> CallApi<T>(
         string path, 
         HttpMethod method, 
         Dictionary<string, string> queryParams, 
-        Object body,
+        object body,
         Dictionary<string, string> headerParams, 
         Dictionary<string, string> formParams, 
         Dictionary<string, FileParameter> fileParams, 
-        string[] authSettings,
         CancellationToken ct
     )
     {
-        UpdateParamsForAuth(queryParams, headerParams, authSettings);
-    
         using (var request = new HttpRequestMessage())
         {
             PrepareRequest(path, method, queryParams, body, headerParams, formParams, fileParams, request);
@@ -73,31 +71,17 @@ public abstract class {{apiClientBaseTypeName}}
             try
             {
                 response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, ct).ConfigureAwait(false);
-    
-                var headers = new Dictionary<string, IEnumerable<string>>();
-                foreach (var item in response.Headers)
-                    headers[item.Key] = item.Value;
-                if (response.Content != null && response.Content.Headers != null)
-                {
-                    foreach (var item in response.Content.Headers)
-                    {
-                        headers[item.Key] = item.Value;
-                    }
-                }
+
+                var headers = CollectHeaders(response);
         
                 var status = (int)response.StatusCode;
-                if (status == 200)
+                if (status is >= 200 and < 300)
                 {
-                    var objectResponse = await ReadObjectResponseAsync<T>(response, headers, ct).ConfigureAwait(false);
-                    if (objectResponse.Object == null)
-                    {
-                        throw new {{exceptionTypeName}}(status, "Response was null which was not expected.", objectResponse.Text, headers, null);
-                    }
-                    return objectResponse.Object;
+                    return await ReadObjectResponseAsync<T>(response, headers, ct).ConfigureAwait(false);
                 }
                 else
                 {
-                    var responseData = response.Content == null ? null : await response.Content.ReadAsStringAsync(ct).ConfigureAwait(false);
+                    var responseData = await response.Content.ReadAsStringAsync(ct).ConfigureAwait(false);
                     throw new {{exceptionTypeName}}(status, "The HTTP status code of the response was not expected (" + status + ").", responseData, headers, null);
                 }
             }
@@ -118,23 +102,19 @@ public abstract class {{apiClientBaseTypeName}}
     /// <param name="headerParams">Header parameters.</param>
     /// <param name="formParams">Form parameters.</param>
     /// <param name="fileParams">File parameters.</param>
-    /// <param name="authSettings">Authentication settings.</param>
     /// <param name="ct">Operation cancellation token.</param>
     /// <returns>Result of request.</returns>
-    public async Task CallApi(
-        String path, 
+    protected virtual async Task CallApi(
+        string path, 
         HttpMethod method, 
-        Dictionary<String, String> queryParams, 
-        Object body,
-        Dictionary<String, String> headerParams, 
-        Dictionary<String, String> formParams, 
-        Dictionary<String, FileParameter> fileParams, 
-        String[] authSettings,
+        Dictionary<string, string> queryParams, 
+        object body,
+        Dictionary<string, string> headerParams, 
+        Dictionary<string, string> formParams, 
+        Dictionary<string, FileParameter> fileParams, 
         CancellationToken ct
     )
     {
-        UpdateParamsForAuth(queryParams, headerParams, authSettings);
-    
         using (var request = new HttpRequestMessage())
         {
             PrepareRequest(path, method, queryParams, body, headerParams, formParams, fileParams, request);
@@ -143,22 +123,13 @@ public abstract class {{apiClientBaseTypeName}}
             try
             {
                 response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, ct).ConfigureAwait(false);
-    
-                var headers = new Dictionary<string, IEnumerable<string>>();
-                foreach (var item in response.Headers)
-                    headers[item.Key] = item.Value;
-                if (response.Content != null && response.Content.Headers != null)
-                {
-                    foreach (var item in response.Content.Headers)
-                    {
-                        headers[item.Key] = item.Value;
-                    }
-                }
+
+                var headers = CollectHeaders(response);
         
                 var status = (int)response.StatusCode;
-                if (status != 200)
+                if (status is < 200 or >= 300)
                 {
-                    var responseData = response.Content == null ? null : await response.Content.ReadAsStringAsync(ct).ConfigureAwait(false);
+                    var responseData = await response.Content.ReadAsStringAsync(ct).ConfigureAwait(false);
                     throw new {{exceptionTypeName}}(status, "The HTTP status code of the response was not expected (" + status + ").", responseData, headers, null);
                 }
             }
@@ -168,7 +139,6 @@ public abstract class {{apiClientBaseTypeName}}
             }
         }
     }
-
 
     private void PrepareRequest(
         string path,
@@ -261,26 +231,20 @@ public abstract class {{apiClientBaseTypeName}}
         request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
     }
                 
-    public bool ReadResponseAsString {get;set;}
+    public bool ReadResponseAsString { get; set; }
 
-    protected virtual async Task<ObjectResponseResult<T>> ReadObjectResponseAsync<T>(
+    protected virtual async Task<T> ReadObjectResponseAsync<T>(
         HttpResponseMessage response, 
         IReadOnlyDictionary<string, IEnumerable<string>> headers,
         CancellationToken ct
     )
     {
-        if (response == null || response.Content == null)
-        {
-            return new ObjectResponseResult<T>(default(T), string.Empty);
-        }
-
         if (ReadResponseAsString)
         {
             var responseText = await response.Content.ReadAsStringAsync(ct).ConfigureAwait(false);
             try
             {
-                var typedBody = JsonSerializer.Deserialize<T>(responseText, _options);
-                return new ObjectResponseResult<T>(typedBody, responseText);
+                return JsonSerializer.Deserialize<T>(responseText, _options);
             }
             catch (JsonException exception)
             {
@@ -288,78 +252,18 @@ public abstract class {{apiClientBaseTypeName}}
                 throw new {{exceptionTypeName}}((int)response.StatusCode, message, responseText, headers, exception);
             }
         }
-        else
+        try
         {
-            try
+            using (var responseStream = await response.Content.ReadAsStreamAsync(ct).ConfigureAwait(false))
             {
-                using (var responseStream = await response.Content.ReadAsStreamAsync(ct).ConfigureAwait(false))
-                {
-                    var deserialized = await JsonSerializer.DeserializeAsync<T>(responseStream, _options, ct);
-                    return new ObjectResponseResult<T>(deserialized, string.Empty);
-                }
-            }
-            catch (JsonException exception)
-            {
-                var message = "Could not deserialize the response body stream as " + typeof(T).FullName + ".";
-                throw new {{exceptionTypeName}}((int)response.StatusCode, message, string.Empty, headers, exception);
+                return await JsonSerializer.DeserializeAsync<T>(responseStream, _options, ct);
             }
         }
-    }
-
-    /// <summary>
-    /// Update parameters based on authentication.
-    /// </summary>
-    /// <param name="queryParams">Query parameters.</param>
-    /// <param name="headerParams">Header parameters.</param>
-    /// <param name="authSettings">Authentication settings.</param>
-    public void UpdateParamsForAuth(Dictionary<String, String> queryParams, Dictionary<String, String> headerParams, string[] authSettings)
-    {
-        if (authSettings == null || authSettings.Length == 0)
-            return;
-
-        foreach (string auth in authSettings)
+        catch (JsonException exception)
         {
-            // determine which one to use
-            switch(auth)
-            {
-                {{#authMethods}}
-                case "{{name}}":
-                    {{#isApiKey}}{{#isKeyInHeader}}headerParams["{{keyParamName}}"] = GetApiKeyWithPrefix("{{keyParamName}}");{{/isKeyInHeader}}{{#isKeyInQuery}}queryParams["{{keyParamName}}"] = GetApiKeyWithPrefix("{{keyParamName}}");{{/isKeyInQuery}}{{/isApiKey}}{{#isBasic}}headerParams["Authorization"] = "Basic " + Base64Encode(Configuration.Username + ":" + Configuration.Password);{{/isBasic}}
-                    {{#isOAuth}}//TODO support oauth{{/isOAuth}}
-                    break;
-                {{/authMethods}}
-                default:
-                    //TODO show warning about security definition not found
-                    break;
-            }
+            var message = "Could not deserialize the response body stream as " + typeof(T).FullName + ".";
+            throw new {{exceptionTypeName}}((int)response.StatusCode, message, string.Empty, headers, exception);
         }
-    }
-
-    /// <summary>
-    /// Encode string in base64 format.
-    /// </summary>
-    /// <param name="text">String to be encoded.</param>
-    /// <returns>Encoded string.</returns>
-    public static string Base64Encode(string text)
-    {
-        var textByte = Encoding.UTF8.GetBytes(text);
-        return Convert.ToBase64String(textByte);
-    }
-
-    /// <summary>
-    /// Get the API key with prefix.
-    /// </summary>
-    /// <param name="apiKeyIdentifier">API key identifier (authentication scheme).</param>
-    /// <returns>API key with prefix.</returns>
-    public string GetApiKeyWithPrefix (string apiKeyIdentifier)
-    {
-        var apiKeyValue = "";
-        Configuration.ApiKey.TryGetValue (apiKeyIdentifier, out apiKeyValue);
-        var apiKeyPrefix = "";
-        if (Configuration.ApiKeyPrefix.TryGetValue (apiKeyIdentifier, out apiKeyPrefix))
-            return apiKeyPrefix + " " + apiKeyValue;
-        else
-            return apiKeyValue;
     }
 
     private string ConvertToString(object value, IFormatProvider cultureInfo)
@@ -422,14 +326,14 @@ public abstract class {{apiClientBaseTypeName}}
     /// </summary>
     /// <param name="obj">The parameter (header, path, query, form).</param>
     /// <returns>Formatted string.</returns>
-    public string ParameterToString(object obj)
+    protected virtual string ParameterToString(object obj)
     {
         if (obj is DateTime datetime)
             // Return a formatted date string - Can be customized with Configuration.DateTimeFormat
             // Defaults to an ISO 8601, using the known as a Round-trip date/time pattern ("o")
             // https://msdn.microsoft.com/en-us/library/az4se3k1(v=vs.110).aspx#Anchor_8
             // For example: 2009-06-15T13:45:30.0000000
-            return datetime.ToString(Configuration.DateTimeFormat);
+            return datetime.ToString(DateTimeFormatForQuery);
         if (obj is List<string> list)
             return String.Join(",", list.ToArray());
         return Convert.ToString(obj);
@@ -441,13 +345,29 @@ public abstract class {{apiClientBaseTypeName}}
     /// <param name="name">Parameter name.</param>
     /// <param name="stream">Input stream.</param>
     /// <returns>FileParameter.</returns>
-    public FileParameter ParameterToFile(string name, Stream stream)
+    public static FileParameter ParameterToFile(string name, Stream stream)
     {
         if (stream is FileStream fs) 
         {
             return new FileParameter(name, stream, Path.GetFileName(fs.Name));
         }
         return new FileParameter(name, stream, "no_file_name_provided");
+    }
+
+    private static Dictionary<string, IEnumerable<string>> CollectHeaders(HttpResponseMessage response)
+    {
+        var headers = new Dictionary<string, IEnumerable<string>>(response.Headers.Count() + response.Content.Headers.Count());
+        foreach (var item in response.Headers)
+        {
+            headers[item.Key] = item.Value;
+        }
+
+        foreach (var item in response.Content.Headers)
+        {
+            headers[item.Key] = item.Value;
+        }
+
+        return headers;
     }
 
     private StreamContent ToStreamContent(FileParameter fileParameter) 
@@ -462,20 +382,6 @@ public abstract class {{apiClientBaseTypeName}}
     
         return streamContent;
     }
-
-    protected struct ObjectResponseResult<T>
-    {
-        public ObjectResponseResult(T responseObject, string responseText)
-        {
-            Object = responseObject;
-            Text = responseText;
-        }
-
-        public T Object { get; }
-
-        public string Text { get; }
-    }
-
 }
 
 public class FileParameter

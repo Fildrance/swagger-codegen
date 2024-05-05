@@ -82,17 +82,7 @@ public partial class StoreApi : PetShopApiClientBase, IStoreApi
         object postBody = null;
 
         
-        // authentication setting, if any
-        string[] authSettings = new string[] {  };
-
-        await CallApi(path.ToString(), HttpMethod.Delete, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling DeleteOrder: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling DeleteOrder: " + response.ErrorMessage, response.ErrorMessage);
-*/
-        
+        await CallApi(path.ToString(), HttpMethod.Delete, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
     /// <inheritdoc />     
@@ -109,16 +99,8 @@ public partial class StoreApi : PetShopApiClientBase, IStoreApi
         object postBody = null;
 
         
-        // authentication setting, if any
-        string[] authSettings = new string[] { "api_key" };
-
-        var response = await CallApi<Dictionary<string, int?>>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling GetInventory: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling GetInventory: " + response.ErrorMessage, response.ErrorMessage);
-*/
+        var response = await CallApi<Dictionary<string, int?>>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        
         return response;
     }
 
@@ -140,16 +122,8 @@ public partial class StoreApi : PetShopApiClientBase, IStoreApi
         object postBody = null;
 
         
-        // authentication setting, if any
-        string[] authSettings = new string[] {  };
-
-        var response = await CallApi<Order>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling GetOrderById: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling GetOrderById: " + response.ErrorMessage, response.ErrorMessage);
-*/
+        var response = await CallApi<Order>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        
         return response;
     }
 
@@ -171,16 +145,8 @@ public partial class StoreApi : PetShopApiClientBase, IStoreApi
 
         postBody = body; // http body (model) parameter
 
-        // authentication setting, if any
-        string[] authSettings = new string[] {  };
-
-        var response = await CallApi<Order>(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, authSettings, ct);
-/*
-        if (((int)response.StatusCode) >= 400)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling PlaceOrder: " + response.Content, response.Content);
-        else if (((int)response.StatusCode) == 0)
-            throw new PetShopApiException ((int)response.StatusCode, "Error calling PlaceOrder: " + response.ErrorMessage, response.ErrorMessage);
-*/
+        var response = await CallApi<Order>(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        
         return response;
     }
 
