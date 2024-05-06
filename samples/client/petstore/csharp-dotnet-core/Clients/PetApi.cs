@@ -110,7 +110,7 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
         if (body == null) throw new PetShopApiException(400, "Missing required parameter 'body' when calling AddPet");
         
 
-        var path = new StringBuilder("/pet");
+        var path_ = new StringBuilder("/pet");
         
         var queryParams = new Dictionary<string, string>();
         var headerParams = new Dictionary<string, string>();
@@ -120,7 +120,7 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
 
         postBody = body; // http body (model) parameter
 
-        await CallApi(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        await CallApi(path_.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
     /// <inheritdoc />     
@@ -131,8 +131,8 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
         if (petId == null) throw new PetShopApiException(400, "Missing required parameter 'petId' when calling DeletePet");
         
 
-        var path = new StringBuilder("/pet/{petId}");
-        path = path.Replace("{petId}", ParameterToString(petId));
+        var path_ = new StringBuilder("/pet/{petId}");
+        path_ = path_.Replace("{petId}", ParameterToString(petId));
 
         var queryParams = new Dictionary<string, string>();
         var headerParams = new Dictionary<string, string>();
@@ -142,7 +142,7 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
 
          if (apiKey != null) headerParams.Add("api_key", ParameterToString(apiKey)); // header parameter
         
-        await CallApi(path.ToString(), HttpMethod.Delete, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        await CallApi(path_.ToString(), HttpMethod.Delete, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
     /// <inheritdoc />     
@@ -153,7 +153,7 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
         if (status == null) throw new PetShopApiException(400, "Missing required parameter 'status' when calling FindPetsByStatus");
         
 
-        var path = new StringBuilder("/pet/findByStatus");
+        var path_ = new StringBuilder("/pet/findByStatus");
         
         var queryParams = new Dictionary<string, string>();
         var headerParams = new Dictionary<string, string>();
@@ -163,7 +163,7 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
 
          if (status != null) queryParams.Add("status", ParameterToString(status)); // query parameter
         
-        var response = await CallApi<List<Pet>>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        var response = await CallApi<List<Pet>>(path_.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
         
         return response;
     }
@@ -176,7 +176,7 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
         if (tags == null) throw new PetShopApiException(400, "Missing required parameter 'tags' when calling FindPetsByTags");
         
 
-        var path = new StringBuilder("/pet/findByTags");
+        var path_ = new StringBuilder("/pet/findByTags");
         
         var queryParams = new Dictionary<string, string>();
         var headerParams = new Dictionary<string, string>();
@@ -186,7 +186,7 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
 
          if (tags != null) queryParams.Add("tags", ParameterToString(tags)); // query parameter
         
-        var response = await CallApi<List<Pet>>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        var response = await CallApi<List<Pet>>(path_.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
         
         return response;
     }
@@ -199,8 +199,8 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
         if (petId == null) throw new PetShopApiException(400, "Missing required parameter 'petId' when calling GetPetById");
         
 
-        var path = new StringBuilder("/pet/{petId}");
-        path = path.Replace("{petId}", ParameterToString(petId));
+        var path_ = new StringBuilder("/pet/{petId}");
+        path_ = path_.Replace("{petId}", ParameterToString(petId));
 
         var queryParams = new Dictionary<string, string>();
         var headerParams = new Dictionary<string, string>();
@@ -209,7 +209,7 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
         object postBody = null;
 
         
-        var response = await CallApi<Pet>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        var response = await CallApi<Pet>(path_.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
         
         return response;
     }
@@ -222,7 +222,7 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
         if (body == null) throw new PetShopApiException(400, "Missing required parameter 'body' when calling UpdatePet");
         
 
-        var path = new StringBuilder("/pet");
+        var path_ = new StringBuilder("/pet");
         
         var queryParams = new Dictionary<string, string>();
         var headerParams = new Dictionary<string, string>();
@@ -232,7 +232,7 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
 
         postBody = body; // http body (model) parameter
 
-        await CallApi(path.ToString(), HttpMethod.Put, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        await CallApi(path_.ToString(), HttpMethod.Put, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
     /// <inheritdoc />     
@@ -243,8 +243,8 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
         if (petId == null) throw new PetShopApiException(400, "Missing required parameter 'petId' when calling UpdatePetWithForm");
         
 
-        var path = new StringBuilder("/pet/{petId}");
-        path = path.Replace("{petId}", ParameterToString(petId));
+        var path_ = new StringBuilder("/pet/{petId}");
+        path_ = path_.Replace("{petId}", ParameterToString(petId));
 
         var queryParams = new Dictionary<string, string>();
         var headerParams = new Dictionary<string, string>();
@@ -255,7 +255,7 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
         if (name != null) formParams.Add("name", ParameterToString(name)); // form parameter
         if (status != null) formParams.Add("status", ParameterToString(status)); // form parameter
         
-        await CallApi(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        await CallApi(path_.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
     /// <inheritdoc />     
@@ -266,8 +266,8 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
         if (petId == null) throw new PetShopApiException(400, "Missing required parameter 'petId' when calling UploadFile");
         
 
-        var path = new StringBuilder("/pet/{petId}/uploadImage");
-        path = path.Replace("{petId}", ParameterToString(petId));
+        var path_ = new StringBuilder("/pet/{petId}/uploadImage");
+        path_ = path_.Replace("{petId}", ParameterToString(petId));
 
         var queryParams = new Dictionary<string, string>();
         var headerParams = new Dictionary<string, string>();
@@ -278,7 +278,7 @@ public partial class PetApi : PetShopApiClientBase, IPetApi
         if (additionalMetadata != null) formParams.Add("additionalMetadata", ParameterToString(additionalMetadata)); // form parameter
         if (_file != null) fileParams.Add("file", ParameterToFile("file", _file));
         
-        var response = await CallApi<ApiResponse>(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        var response = await CallApi<ApiResponse>(path_.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
         
         return response;
     }

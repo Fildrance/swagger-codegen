@@ -72,8 +72,8 @@ public partial class StoreApi : PetShopApiClientBase, IStoreApi
         if (orderId == null) throw new PetShopApiException(400, "Missing required parameter 'orderId' when calling DeleteOrder");
         
 
-        var path = new StringBuilder("/store/order/{orderId}");
-        path = path.Replace("{orderId}", ParameterToString(orderId));
+        var path_ = new StringBuilder("/store/order/{orderId}");
+        path_ = path_.Replace("{orderId}", ParameterToString(orderId));
 
         var queryParams = new Dictionary<string, string>();
         var headerParams = new Dictionary<string, string>();
@@ -82,7 +82,7 @@ public partial class StoreApi : PetShopApiClientBase, IStoreApi
         object postBody = null;
 
         
-        await CallApi(path.ToString(), HttpMethod.Delete, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        await CallApi(path_.ToString(), HttpMethod.Delete, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
     /// <inheritdoc />     
@@ -90,7 +90,7 @@ public partial class StoreApi : PetShopApiClientBase, IStoreApi
     {
         
 
-        var path = new StringBuilder("/store/inventory");
+        var path_ = new StringBuilder("/store/inventory");
         
         var queryParams = new Dictionary<string, string>();
         var headerParams = new Dictionary<string, string>();
@@ -99,7 +99,7 @@ public partial class StoreApi : PetShopApiClientBase, IStoreApi
         object postBody = null;
 
         
-        var response = await CallApi<Dictionary<string, int?>>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        var response = await CallApi<Dictionary<string, int?>>(path_.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
         
         return response;
     }
@@ -112,8 +112,8 @@ public partial class StoreApi : PetShopApiClientBase, IStoreApi
         if (orderId == null) throw new PetShopApiException(400, "Missing required parameter 'orderId' when calling GetOrderById");
         
 
-        var path = new StringBuilder("/store/order/{orderId}");
-        path = path.Replace("{orderId}", ParameterToString(orderId));
+        var path_ = new StringBuilder("/store/order/{orderId}");
+        path_ = path_.Replace("{orderId}", ParameterToString(orderId));
 
         var queryParams = new Dictionary<string, string>();
         var headerParams = new Dictionary<string, string>();
@@ -122,7 +122,7 @@ public partial class StoreApi : PetShopApiClientBase, IStoreApi
         object postBody = null;
 
         
-        var response = await CallApi<Order>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        var response = await CallApi<Order>(path_.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
         
         return response;
     }
@@ -135,7 +135,7 @@ public partial class StoreApi : PetShopApiClientBase, IStoreApi
         if (body == null) throw new PetShopApiException(400, "Missing required parameter 'body' when calling PlaceOrder");
         
 
-        var path = new StringBuilder("/store/order");
+        var path_ = new StringBuilder("/store/order");
         
         var queryParams = new Dictionary<string, string>();
         var headerParams = new Dictionary<string, string>();
@@ -145,7 +145,7 @@ public partial class StoreApi : PetShopApiClientBase, IStoreApi
 
         postBody = body; // http body (model) parameter
 
-        var response = await CallApi<Order>(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        var response = await CallApi<Order>(path_.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
         
         return response;
     }

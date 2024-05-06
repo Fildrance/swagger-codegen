@@ -106,7 +106,7 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
         if (body == null) throw new PetShopApiException(400, "Missing required parameter 'body' when calling CreateUser");
         
 
-        var path = new StringBuilder("/user");
+        var path_ = new StringBuilder("/user");
         
         var queryParams = new Dictionary<string, string>();
         var headerParams = new Dictionary<string, string>();
@@ -116,7 +116,7 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
 
         postBody = body; // http body (model) parameter
 
-        await CallApi(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        await CallApi(path_.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
     /// <inheritdoc />     
@@ -127,7 +127,7 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
         if (body == null) throw new PetShopApiException(400, "Missing required parameter 'body' when calling CreateUsersWithArrayInput");
         
 
-        var path = new StringBuilder("/user/createWithArray");
+        var path_ = new StringBuilder("/user/createWithArray");
         
         var queryParams = new Dictionary<string, string>();
         var headerParams = new Dictionary<string, string>();
@@ -137,7 +137,7 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
 
         postBody = body; // http body (model) parameter
 
-        await CallApi(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        await CallApi(path_.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
     /// <inheritdoc />     
@@ -148,7 +148,7 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
         if (body == null) throw new PetShopApiException(400, "Missing required parameter 'body' when calling CreateUsersWithListInput");
         
 
-        var path = new StringBuilder("/user/createWithList");
+        var path_ = new StringBuilder("/user/createWithList");
         
         var queryParams = new Dictionary<string, string>();
         var headerParams = new Dictionary<string, string>();
@@ -158,7 +158,7 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
 
         postBody = body; // http body (model) parameter
 
-        await CallApi(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        await CallApi(path_.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
     /// <inheritdoc />     
@@ -169,8 +169,8 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
         if (username == null) throw new PetShopApiException(400, "Missing required parameter 'username' when calling DeleteUser");
         
 
-        var path = new StringBuilder("/user/{username}");
-        path = path.Replace("{username}", ParameterToString(username));
+        var path_ = new StringBuilder("/user/{username}");
+        path_ = path_.Replace("{username}", ParameterToString(username));
 
         var queryParams = new Dictionary<string, string>();
         var headerParams = new Dictionary<string, string>();
@@ -179,7 +179,7 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
         object postBody = null;
 
         
-        await CallApi(path.ToString(), HttpMethod.Delete, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        await CallApi(path_.ToString(), HttpMethod.Delete, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
     /// <inheritdoc />     
@@ -190,8 +190,8 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
         if (username == null) throw new PetShopApiException(400, "Missing required parameter 'username' when calling GetUserByName");
         
 
-        var path = new StringBuilder("/user/{username}");
-        path = path.Replace("{username}", ParameterToString(username));
+        var path_ = new StringBuilder("/user/{username}");
+        path_ = path_.Replace("{username}", ParameterToString(username));
 
         var queryParams = new Dictionary<string, string>();
         var headerParams = new Dictionary<string, string>();
@@ -200,7 +200,7 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
         object postBody = null;
 
         
-        var response = await CallApi<User>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        var response = await CallApi<User>(path_.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
         
         return response;
     }
@@ -216,7 +216,7 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
         if (password == null) throw new PetShopApiException(400, "Missing required parameter 'password' when calling LoginUser");
         
 
-        var path = new StringBuilder("/user/login");
+        var path_ = new StringBuilder("/user/login");
         
         var queryParams = new Dictionary<string, string>();
         var headerParams = new Dictionary<string, string>();
@@ -227,7 +227,7 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
          if (username != null) queryParams.Add("username", ParameterToString(username)); // query parameter
          if (password != null) queryParams.Add("password", ParameterToString(password)); // query parameter
         
-        var response = await CallApi<string>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        var response = await CallApi<string>(path_.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
         
         return response;
     }
@@ -237,7 +237,7 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
     {
         
 
-        var path = new StringBuilder("/user/logout");
+        var path_ = new StringBuilder("/user/logout");
         
         var queryParams = new Dictionary<string, string>();
         var headerParams = new Dictionary<string, string>();
@@ -246,7 +246,7 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
         object postBody = null;
 
         
-        await CallApi(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        await CallApi(path_.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
     /// <inheritdoc />     
@@ -260,8 +260,8 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
         if (body == null) throw new PetShopApiException(400, "Missing required parameter 'body' when calling UpdateUser");
         
 
-        var path = new StringBuilder("/user/{username}");
-        path = path.Replace("{username}", ParameterToString(username));
+        var path_ = new StringBuilder("/user/{username}");
+        path_ = path_.Replace("{username}", ParameterToString(username));
 
         var queryParams = new Dictionary<string, string>();
         var headerParams = new Dictionary<string, string>();
@@ -271,7 +271,7 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
 
         postBody = body; // http body (model) parameter
 
-        await CallApi(path.ToString(), HttpMethod.Put, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        await CallApi(path_.ToString(), HttpMethod.Put, queryParams, postBody, headerParams, formParams, fileParams, ct);
     }
 
 }
