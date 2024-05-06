@@ -324,6 +324,7 @@ public abstract class AbstractCSharpCodegen extends DefaultCodegen implements Co
                 .put("lowercase", new LowercaseLambda().generator(this))
                 .put("uppercase", new UppercaseLambda())
                 .put("titlecase", new TitlecaseLambda())
+                .put("pascalcase", new PascalCaseLambda())
                 .put("camelcase", new CamelCaseLambda().generator(this))
                 .put("camelcase_param", new CamelCaseLambda().generator(this).escapeAsParamName(true))
                 .put("indented", new IndentedLambda())
