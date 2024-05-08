@@ -11,19 +11,21 @@ namespace PetShop.Models;
 /// 
 /// </summary>
 [GeneratedCode("swagger-codegen", "unset")]
-public partial class Tag 
+public partial class PetIdUploadImageBody 
 {
     /// <summary>
-    /// Gets or Sets Id
+    /// Additional data to pass to server
     /// </summary>
-    [JsonPropertyName("id")]
-    public long? Id { get; set; }
+    /// <value>Additional data to pass to server</value>
+    [JsonPropertyName("additionalMetadata")]
+    public string AdditionalMetadata { get; set; }
     
     /// <summary>
-    /// Gets or Sets Name
+    /// file to upload
     /// </summary>
-    [JsonPropertyName("name")]
-    public string Name { get; set; }
+    /// <value>file to upload</value>
+    [JsonPropertyName("file")]
+    public byte[] File { get; set; }
     
     
     /// <summary>
@@ -33,9 +35,9 @@ public partial class Tag
     public override string ToString()  
     {
       var sb = new StringBuilder();
-      sb.Append("class Tag {\n");
-      sb.Append("  Id: ").Append(Id).Append("\n");
-      sb.Append("  Name: ").Append(Name).Append("\n");
+      sb.Append("class PetIdUploadImageBody {\n");
+      sb.Append("  AdditionalMetadata: ").Append(AdditionalMetadata).Append("\n");
+      sb.Append("  File: ").Append(File).Append("\n");
       sb.Append("}\n");
       return sb.ToString();
     }

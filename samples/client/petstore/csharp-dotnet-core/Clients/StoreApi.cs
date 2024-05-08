@@ -5,7 +5,6 @@ using System.Threading;
 using System.Text;
 using System.Threading.Tasks;
 using System.CodeDom.Compiler;
-using PetShop;
 using PetShop.Models;
 
 namespace PetShop.Clients;
@@ -13,7 +12,7 @@ namespace PetShop.Clients;
 /// <summary>
 /// Represents a collection of functions to interact with the API endpoints
 /// </summary>
-[GeneratedCode("swagger-codegen", "1.0")]
+[GeneratedCode("swagger-codegen", "unset")]
 public partial interface IStoreApi
 {
     /// <summary>
@@ -21,14 +20,12 @@ public partial interface IStoreApi
     /// </summary>
     /// <param name="orderId">ID of the order that needs to be deleted</param>
     /// <param name="ct"></param>
-    /// <param name="ct">Operation cancellation token. </param>
     /// <returns></returns>
     Task DeleteOrder (string orderId, CancellationToken ct);
     /// <summary>
     /// Returns pet inventories by status Returns a map of status codes to quantities
     /// </summary>
     /// <param name="ct"></param>
-    /// <param name="ct">Operation cancellation token. </param>
     /// <returns>Dictionary&lt;string, int?&gt;</returns>
     Task<Dictionary<string, int?>> GetInventory (CancellationToken ct);
     /// <summary>
@@ -36,15 +33,13 @@ public partial interface IStoreApi
     /// </summary>
     /// <param name="orderId">ID of pet that needs to be fetched</param>
     /// <param name="ct"></param>
-    /// <param name="ct">Operation cancellation token. </param>
     /// <returns>Order</returns>
-    Task<Order> GetOrderById (long? orderId, CancellationToken ct);
+    Task<Order> GetOrderById (string orderId, CancellationToken ct);
     /// <summary>
     /// Place an order for a pet 
     /// </summary>
     /// <param name="body">order placed for purchasing the pet</param>
     /// <param name="ct"></param>
-    /// <param name="ct">Operation cancellation token. </param>
     /// <returns>Order</returns>
     Task<Order> PlaceOrder (Order body, CancellationToken ct);
 }
@@ -52,7 +47,7 @@ public partial interface IStoreApi
 /// <summary>
 /// Represents a collection of functions to interact with the API endpoints
 /// </summary>  
-[GeneratedCode("swagger-codegen", "1.0")]
+[GeneratedCode("swagger-codegen", "unset")]
 public partial class StoreApi : PetShopApiClientBase, IStoreApi
 {
     /// <summary>
@@ -67,63 +62,53 @@ public partial class StoreApi : PetShopApiClientBase, IStoreApi
     /// <inheritdoc />     
     public async Task DeleteOrder(string orderId, CancellationToken ct)
     {
-        
         // verify the required parameter 'orderId' is set
         if (orderId == null) throw new PetShopApiException(400, "Missing required parameter 'orderId' when calling DeleteOrder");
         
-
-        var path = new StringBuilder("/store/order/{orderId}");
-        path = path.Replace("{orderId}", ParameterToString(orderId));
-
-        var queryParams = new Dictionary<string, string>();
-        var headerParams = new Dictionary<string, string>();
-        var formParams = new Dictionary<string, string>();
-        var fileParams = new Dictionary<string, FileParameter>();
-        object postBody = null;
+        var path_ = new StringBuilder("/store/order/{orderId}"); 
+        path_ = path_.Replace("{orderId}", ParameterToString(orderId));
 
         
-        await CallApi(path.ToString(), HttpMethod.Delete, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        
+        await CallApi(
+                    path_.ToString(), 
+                    HttpMethod.Delete,  
+                    ct: ct
+        );
     }
 
     /// <inheritdoc />     
     public async Task<Dictionary<string, int?>> GetInventory(CancellationToken ct)
     {
         
-
-        var path = new StringBuilder("/store/inventory");
-        
-        var queryParams = new Dictionary<string, string>();
-        var headerParams = new Dictionary<string, string>();
-        var formParams = new Dictionary<string, string>();
-        var fileParams = new Dictionary<string, FileParameter>();
-        object postBody = null;
+        var path_ = new StringBuilder("/store/inventory"); 
 
         
-        var response = await CallApi<Dictionary<string, int?>>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
         
+        var response = await CallApi<Dictionary<string, int?>>(
+                    path_.ToString(), 
+                    HttpMethod.Get,  
+                    ct: ct
+        );
         return response;
     }
 
     /// <inheritdoc />     
-    public async Task<Order> GetOrderById(long? orderId, CancellationToken ct)
+    public async Task<Order> GetOrderById(string orderId, CancellationToken ct)
     {
-        
         // verify the required parameter 'orderId' is set
         if (orderId == null) throw new PetShopApiException(400, "Missing required parameter 'orderId' when calling GetOrderById");
         
-
-        var path = new StringBuilder("/store/order/{orderId}");
-        path = path.Replace("{orderId}", ParameterToString(orderId));
-
-        var queryParams = new Dictionary<string, string>();
-        var headerParams = new Dictionary<string, string>();
-        var formParams = new Dictionary<string, string>();
-        var fileParams = new Dictionary<string, FileParameter>();
-        object postBody = null;
+        var path_ = new StringBuilder("/store/order/{orderId}"); 
+        path_ = path_.Replace("{orderId}", ParameterToString(orderId));
 
         
-        var response = await CallApi<Order>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
         
+        var response = await CallApi<Order>(
+                    path_.ToString(), 
+                    HttpMethod.Get,  
+                    ct: ct
+        );
         return response;
     }
 
@@ -131,22 +116,16 @@ public partial class StoreApi : PetShopApiClientBase, IStoreApi
     public async Task<Order> PlaceOrder(Order body, CancellationToken ct)
     {
         
-        // verify the required parameter 'body' is set
-        if (body == null) throw new PetShopApiException(400, "Missing required parameter 'body' when calling PlaceOrder");
-        
+        var path_ = new StringBuilder("/store/order"); 
 
-        var path = new StringBuilder("/store/order");
         
-        var queryParams = new Dictionary<string, string>();
-        var headerParams = new Dictionary<string, string>();
-        var formParams = new Dictionary<string, string>();
-        var fileParams = new Dictionary<string, FileParameter>();
-        object postBody = null;
-
-        postBody = body; // http body (model) parameter
-
-        var response = await CallApi<Order>(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
         
+        var response = await CallApi<Order>(
+                    path_.ToString(), 
+                    HttpMethod.Post,
+                    body: body,   
+                    ct: ct
+        );
         return response;
     }
 

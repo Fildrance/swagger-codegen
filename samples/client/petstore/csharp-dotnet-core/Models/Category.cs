@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.CodeDom.Compiler;
 using System.Text;
@@ -7,9 +8,9 @@ using System.Text.Json.Serialization;
 namespace PetShop.Models;
 
 /// <summary>
-/// A category for a pet
+/// 
 /// </summary>
-[GeneratedCode("swagger-codegen", "1.0")]
+[GeneratedCode("swagger-codegen", "unset")]
 public partial class Category 
 {
     /// <summary>

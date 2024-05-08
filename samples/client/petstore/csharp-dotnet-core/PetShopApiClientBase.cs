@@ -17,7 +17,7 @@ namespace PetShop;
 /// <summary>
 /// Base type for API client is mainly responsible for making the HTTP call to the API.
 /// </summary>
-[GeneratedCode("swagger-codegen", "1.0")]
+[GeneratedCode("swagger-codegen", "unset")]
 public abstract class PetShopApiClientBase
 {
     protected readonly HttpClient _httpClient;
@@ -56,12 +56,12 @@ public abstract class PetShopApiClientBase
     protected virtual async Task<T> CallApi<T>(
         string path, 
         HttpMethod method, 
-        Dictionary<string, string> queryParams, 
-        object body,
-        Dictionary<string, string> headerParams, 
-        Dictionary<string, string> formParams, 
-        Dictionary<string, FileParameter> fileParams, 
-        CancellationToken ct
+        Dictionary<string, string> queryParams = null, 
+        object body = null,
+        Dictionary<string, string> headerParams = null, 
+        Dictionary<string, string> formParams = null, 
+        Dictionary<string, FileParameter> fileParams = null, 
+        CancellationToken ct = default
     )
     {
         using (var request = new HttpRequestMessage())
@@ -87,6 +87,13 @@ public abstract class PetShopApiClientBase
             }
             finally
             {
+                if(fileParams != null)
+                {
+                    foreach(var fileParam in fileParams)
+                    {
+                        fileParam.Value.FileData?.Dispose();
+                    }
+                }
                 response?.Dispose();
             }
         }
@@ -106,13 +113,13 @@ public abstract class PetShopApiClientBase
     /// <returns>Result of request.</returns>
     protected virtual async Task CallApi(
         string path, 
-        HttpMethod method, 
-        Dictionary<string, string> queryParams, 
-        object body,
-        Dictionary<string, string> headerParams, 
-        Dictionary<string, string> formParams, 
-        Dictionary<string, FileParameter> fileParams, 
-        CancellationToken ct
+        HttpMethod method,
+        Dictionary<string, string> queryParams = null,
+        object body = null,
+        Dictionary<string, string> headerParams = null,
+        Dictionary<string, string> formParams = null,
+        Dictionary<string, FileParameter> fileParams = null,
+        CancellationToken ct = default
     )
     {
         using (var request = new HttpRequestMessage())
@@ -135,6 +142,13 @@ public abstract class PetShopApiClientBase
             }
             finally
             {
+                if(fileParams != null)
+                {
+                    foreach(var fileParam in fileParams)
+                    {
+                        fileParam.Value.FileData?.Dispose();
+                    }
+                }
                 response?.Dispose();
             }
         }
@@ -352,6 +366,17 @@ public abstract class PetShopApiClientBase
             return new FileParameter(name, stream, Path.GetFileName(fs.Name));
         }
         return new FileParameter(name, stream, "no_file_name_provided");
+    }
+
+    /// <summary>
+    /// Create FileParameter based on Stream.
+    /// </summary>
+    /// <param name="name">Parameter name.</param>
+    /// <param name="stream">Input stream.</param>
+    /// <returns>FileParameter.</returns>
+    public static FileParameter ParameterToFile(string name, byte[] data)
+    {
+        return new FileParameter(name, data, "no_file_name_provided");
     }
 
     private static Dictionary<string, IEnumerable<string>> CollectHeaders(HttpResponseMessage response)

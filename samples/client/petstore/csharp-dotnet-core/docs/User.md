@@ -1,4 +1,4 @@
-# PetShop.Models.User
+# .User
 ## Properties
 
 Name | Type | Description | Notes

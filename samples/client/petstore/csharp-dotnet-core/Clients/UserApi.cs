@@ -5,7 +5,6 @@ using System.Threading;
 using System.Text;
 using System.Threading.Tasks;
 using System.CodeDom.Compiler;
-using PetShop;
 using PetShop.Models;
 
 namespace PetShop.Clients;
@@ -13,7 +12,7 @@ namespace PetShop.Clients;
 /// <summary>
 /// Represents a collection of functions to interact with the API endpoints
 /// </summary>
-[GeneratedCode("swagger-codegen", "1.0")]
+[GeneratedCode("swagger-codegen", "unset")]
 public partial interface IUserApi
 {
     /// <summary>
@@ -21,7 +20,6 @@ public partial interface IUserApi
     /// </summary>
     /// <param name="body">Created user object</param>
     /// <param name="ct"></param>
-    /// <param name="ct">Operation cancellation token. </param>
     /// <returns></returns>
     Task CreateUser (User body, CancellationToken ct);
     /// <summary>
@@ -29,7 +27,6 @@ public partial interface IUserApi
     /// </summary>
     /// <param name="body">List of user object</param>
     /// <param name="ct"></param>
-    /// <param name="ct">Operation cancellation token. </param>
     /// <returns></returns>
     Task CreateUsersWithArrayInput (List<User> body, CancellationToken ct);
     /// <summary>
@@ -37,7 +34,6 @@ public partial interface IUserApi
     /// </summary>
     /// <param name="body">List of user object</param>
     /// <param name="ct"></param>
-    /// <param name="ct">Operation cancellation token. </param>
     /// <returns></returns>
     Task CreateUsersWithListInput (List<User> body, CancellationToken ct);
     /// <summary>
@@ -45,15 +41,13 @@ public partial interface IUserApi
     /// </summary>
     /// <param name="username">The name that needs to be deleted</param>
     /// <param name="ct"></param>
-    /// <param name="ct">Operation cancellation token. </param>
     /// <returns></returns>
     Task DeleteUser (string username, CancellationToken ct);
     /// <summary>
     /// Get user by user name 
     /// </summary>
-    /// <param name="username">The name that needs to be fetched. Use user1 for testing.</param>
+    /// <param name="username">The name that needs to be fetched. Use user1 for testing. </param>
     /// <param name="ct"></param>
-    /// <param name="ct">Operation cancellation token. </param>
     /// <returns>User</returns>
     Task<User> GetUserByName (string username, CancellationToken ct);
     /// <summary>
@@ -62,14 +56,12 @@ public partial interface IUserApi
     /// <param name="username">The user name for login</param>
     /// <param name="password">The password for login in clear text</param>
     /// <param name="ct"></param>
-    /// <param name="ct">Operation cancellation token. </param>
     /// <returns>string</returns>
     Task<string> LoginUser (string username, string password, CancellationToken ct);
     /// <summary>
     /// Logs out current logged in user session 
     /// </summary>
     /// <param name="ct"></param>
-    /// <param name="ct">Operation cancellation token. </param>
     /// <returns></returns>
     Task LogoutUser (CancellationToken ct);
     /// <summary>
@@ -78,7 +70,6 @@ public partial interface IUserApi
     /// <param name="username">name that need to be deleted</param>
     /// <param name="body">Updated user object</param>
     /// <param name="ct"></param>
-    /// <param name="ct">Operation cancellation token. </param>
     /// <returns></returns>
     Task UpdateUser (string username, User body, CancellationToken ct);
 }
@@ -86,7 +77,7 @@ public partial interface IUserApi
 /// <summary>
 /// Represents a collection of functions to interact with the API endpoints
 /// </summary>  
-[GeneratedCode("swagger-codegen", "1.0")]
+[GeneratedCode("swagger-codegen", "unset")]
 public partial class UserApi : PetShopApiClientBase, IUserApi
 {
     /// <summary>
@@ -102,106 +93,84 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
     public async Task CreateUser(User body, CancellationToken ct)
     {
         
-        // verify the required parameter 'body' is set
-        if (body == null) throw new PetShopApiException(400, "Missing required parameter 'body' when calling CreateUser");
+        var path_ = new StringBuilder("/user"); 
+
         
-
-        var path = new StringBuilder("/user");
         
-        var queryParams = new Dictionary<string, string>();
-        var headerParams = new Dictionary<string, string>();
-        var formParams = new Dictionary<string, string>();
-        var fileParams = new Dictionary<string, FileParameter>();
-        object postBody = null;
-
-        postBody = body; // http body (model) parameter
-
-        await CallApi(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        await CallApi(
+                    path_.ToString(), 
+                    HttpMethod.Post,
+                    body: body,   
+                    ct: ct
+        );
     }
 
     /// <inheritdoc />     
     public async Task CreateUsersWithArrayInput(List<User> body, CancellationToken ct)
     {
         
-        // verify the required parameter 'body' is set
-        if (body == null) throw new PetShopApiException(400, "Missing required parameter 'body' when calling CreateUsersWithArrayInput");
+        var path_ = new StringBuilder("/user/createWithArray"); 
+
         
-
-        var path = new StringBuilder("/user/createWithArray");
         
-        var queryParams = new Dictionary<string, string>();
-        var headerParams = new Dictionary<string, string>();
-        var formParams = new Dictionary<string, string>();
-        var fileParams = new Dictionary<string, FileParameter>();
-        object postBody = null;
-
-        postBody = body; // http body (model) parameter
-
-        await CallApi(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        await CallApi(
+                    path_.ToString(), 
+                    HttpMethod.Post,
+                    body: body,   
+                    ct: ct
+        );
     }
 
     /// <inheritdoc />     
     public async Task CreateUsersWithListInput(List<User> body, CancellationToken ct)
     {
         
-        // verify the required parameter 'body' is set
-        if (body == null) throw new PetShopApiException(400, "Missing required parameter 'body' when calling CreateUsersWithListInput");
+        var path_ = new StringBuilder("/user/createWithList"); 
+
         
-
-        var path = new StringBuilder("/user/createWithList");
         
-        var queryParams = new Dictionary<string, string>();
-        var headerParams = new Dictionary<string, string>();
-        var formParams = new Dictionary<string, string>();
-        var fileParams = new Dictionary<string, FileParameter>();
-        object postBody = null;
-
-        postBody = body; // http body (model) parameter
-
-        await CallApi(path.ToString(), HttpMethod.Post, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        await CallApi(
+                    path_.ToString(), 
+                    HttpMethod.Post,
+                    body: body,   
+                    ct: ct
+        );
     }
 
     /// <inheritdoc />     
     public async Task DeleteUser(string username, CancellationToken ct)
     {
-        
         // verify the required parameter 'username' is set
         if (username == null) throw new PetShopApiException(400, "Missing required parameter 'username' when calling DeleteUser");
         
-
-        var path = new StringBuilder("/user/{username}");
-        path = path.Replace("{username}", ParameterToString(username));
-
-        var queryParams = new Dictionary<string, string>();
-        var headerParams = new Dictionary<string, string>();
-        var formParams = new Dictionary<string, string>();
-        var fileParams = new Dictionary<string, FileParameter>();
-        object postBody = null;
+        var path_ = new StringBuilder("/user/{username}"); 
+        path_ = path_.Replace("{username}", ParameterToString(username));
 
         
-        await CallApi(path.ToString(), HttpMethod.Delete, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        
+        await CallApi(
+                    path_.ToString(), 
+                    HttpMethod.Delete,  
+                    ct: ct
+        );
     }
 
     /// <inheritdoc />     
     public async Task<User> GetUserByName(string username, CancellationToken ct)
     {
-        
         // verify the required parameter 'username' is set
         if (username == null) throw new PetShopApiException(400, "Missing required parameter 'username' when calling GetUserByName");
         
-
-        var path = new StringBuilder("/user/{username}");
-        path = path.Replace("{username}", ParameterToString(username));
-
-        var queryParams = new Dictionary<string, string>();
-        var headerParams = new Dictionary<string, string>();
-        var formParams = new Dictionary<string, string>();
-        var fileParams = new Dictionary<string, FileParameter>();
-        object postBody = null;
+        var path_ = new StringBuilder("/user/{username}"); 
+        path_ = path_.Replace("{username}", ParameterToString(username));
 
         
-        var response = await CallApi<User>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
         
+        var response = await CallApi<User>(
+                    path_.ToString(), 
+                    HttpMethod.Get,  
+                    ct: ct
+        );
         return response;
     }
 
@@ -209,26 +178,19 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
     public async Task<string> LoginUser(string username, string password, CancellationToken ct)
     {
         
-        // verify the required parameter 'username' is set
-        if (username == null) throw new PetShopApiException(400, "Missing required parameter 'username' when calling LoginUser");
-        
-        // verify the required parameter 'password' is set
-        if (password == null) throw new PetShopApiException(400, "Missing required parameter 'password' when calling LoginUser");
-        
+        var path_ = new StringBuilder("/user/login"); 
 
-        var path = new StringBuilder("/user/login");
-        
         var queryParams = new Dictionary<string, string>();
-        var headerParams = new Dictionary<string, string>();
-        var formParams = new Dictionary<string, string>();
-        var fileParams = new Dictionary<string, FileParameter>();
-        object postBody = null;
-
-         if (username != null) queryParams.Add("username", ParameterToString(username)); // query parameter
-         if (password != null) queryParams.Add("password", ParameterToString(password)); // query parameter
+         
+        if (username != null) queryParams.Add("username", ParameterToString(username)); // query parameter 
+        if (password != null) queryParams.Add("password", ParameterToString(password)); // query parameter
         
-        var response = await CallApi<string>(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
-        
+        var response = await CallApi<string>(
+                    path_.ToString(), 
+                    HttpMethod.Get,
+                    queryParams: queryParams,  
+                    ct: ct
+        );
         return response;
     }
 
@@ -236,42 +198,34 @@ public partial class UserApi : PetShopApiClientBase, IUserApi
     public async Task LogoutUser(CancellationToken ct)
     {
         
-
-        var path = new StringBuilder("/user/logout");
-        
-        var queryParams = new Dictionary<string, string>();
-        var headerParams = new Dictionary<string, string>();
-        var formParams = new Dictionary<string, string>();
-        var fileParams = new Dictionary<string, FileParameter>();
-        object postBody = null;
+        var path_ = new StringBuilder("/user/logout"); 
 
         
-        await CallApi(path.ToString(), HttpMethod.Get, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        
+        await CallApi(
+                    path_.ToString(), 
+                    HttpMethod.Get,  
+                    ct: ct
+        );
     }
 
     /// <inheritdoc />     
     public async Task UpdateUser(string username, User body, CancellationToken ct)
     {
-        
         // verify the required parameter 'username' is set
         if (username == null) throw new PetShopApiException(400, "Missing required parameter 'username' when calling UpdateUser");
         
-        // verify the required parameter 'body' is set
-        if (body == null) throw new PetShopApiException(400, "Missing required parameter 'body' when calling UpdateUser");
+        var path_ = new StringBuilder("/user/{username}"); 
+        path_ = path_.Replace("{username}", ParameterToString(username));
+
         
-
-        var path = new StringBuilder("/user/{username}");
-        path = path.Replace("{username}", ParameterToString(username));
-
-        var queryParams = new Dictionary<string, string>();
-        var headerParams = new Dictionary<string, string>();
-        var formParams = new Dictionary<string, string>();
-        var fileParams = new Dictionary<string, FileParameter>();
-        object postBody = null;
-
-        postBody = body; // http body (model) parameter
-
-        await CallApi(path.ToString(), HttpMethod.Put, queryParams, postBody, headerParams, formParams, fileParams, ct);
+        
+        await CallApi(
+                    path_.ToString(), 
+                    HttpMethod.Put,
+                    body: body,   
+                    ct: ct
+        );
     }
 
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.CodeDom.Compiler;
 using System.Text;
@@ -7,23 +8,24 @@ using System.Text.Json.Serialization;
 namespace PetShop.Models;
 
 /// <summary>
-/// some description 
+/// 
 /// </summary>
-[GeneratedCode("swagger-codegen", "1.0")]
-public partial class Amount 
+[GeneratedCode("swagger-codegen", "unset")]
+public partial class PetPetIdBody 
 {
     /// <summary>
-    /// some description 
+    /// Updated name of the pet
     /// </summary>
-    /// <value>some description </value>
-    [JsonPropertyName("value")]
-    public double? Value { get; set; }
+    /// <value>Updated name of the pet</value>
+    [JsonPropertyName("name")]
+    public string Name { get; set; }
     
     /// <summary>
-    /// Gets or Sets Currency
+    /// Updated status of the pet
     /// </summary>
-    [JsonPropertyName("currency")]
-    public Currency Currency { get; set; }
+    /// <value>Updated status of the pet</value>
+    [JsonPropertyName("status")]
+    public string Status { get; set; }
     
     
     /// <summary>
@@ -33,9 +35,9 @@ public partial class Amount
     public override string ToString()  
     {
       var sb = new StringBuilder();
-      sb.Append("class Amount {\n");
-      sb.Append("  Value: ").Append(Value).Append("\n");
-      sb.Append("  Currency: ").Append(Currency).Append("\n");
+      sb.Append("class PetPetIdBody {\n");
+      sb.Append("  Name: ").Append(Name).Append("\n");
+      sb.Append("  Status: ").Append(Status).Append("\n");
       sb.Append("}\n");
       return sb.ToString();
     }

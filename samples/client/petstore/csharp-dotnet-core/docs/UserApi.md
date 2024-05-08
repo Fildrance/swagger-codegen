@@ -1,17 +1,17 @@
-# PetShop.Clients.UserApi
+# .UserApi
 
 All URIs are relative to *http://petstore.swagger.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateUser**](UserApi.md#createuser) | **POST** /user | Create user
-[**CreateUsersWithArrayInput**](UserApi.md#createuserswitharrayinput) | **POST** /user/createWithArray | Creates list of users with given input array
-[**CreateUsersWithListInput**](UserApi.md#createuserswithlistinput) | **POST** /user/createWithList | Creates list of users with given input array
-[**DeleteUser**](UserApi.md#deleteuser) | **DELETE** /user/{username} | Delete user
-[**GetUserByName**](UserApi.md#getuserbyname) | **GET** /user/{username} | Get user by user name
-[**LoginUser**](UserApi.md#loginuser) | **GET** /user/login | Logs user into the system
-[**LogoutUser**](UserApi.md#logoutuser) | **GET** /user/logout | Logs out current logged in user session
-[**UpdateUser**](UserApi.md#updateuser) | **PUT** /user/{username} | Updated user
+[**CreateUser**](UserApi.md#createuser) | **Post** /user | Create user
+[**CreateUsersWithArrayInput**](UserApi.md#createuserswitharrayinput) | **Post** /user/createWithArray | Creates list of users with given input array
+[**CreateUsersWithListInput**](UserApi.md#createuserswithlistinput) | **Post** /user/createWithList | Creates list of users with given input array
+[**DeleteUser**](UserApi.md#deleteuser) | **Delete** /user/{username} | Delete user
+[**GetUserByName**](UserApi.md#getuserbyname) | **Get** /user/{username} | Get user by user name
+[**LoginUser**](UserApi.md#loginuser) | **Get** /user/login | Logs user into the system
+[**LogoutUser**](UserApi.md#logoutuser) | **Get** /user/logout | Logs out current logged in user session
+[**UpdateUser**](UserApi.md#updateuser) | **Put** /user/{username} | Updated user
 
 
 <a name="createuser"></a>
@@ -26,7 +26,7 @@ This can only be done by the logged in user.
 ```csharp
 using System;
 using System.Diagnostics;
-using PetShop.Clients;
+using ;
 using PetShop;
 using PetShop.Models;
 
@@ -38,7 +38,7 @@ namespace Example
         {
             
             var apiInstance = new UserApi();
-            var body = new User(); // User | Created user object
+            var body = new User(); // User | Created user object (optional) 
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
             try
@@ -59,7 +59,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**User**](User.md)| Created user object | 
+ **body** | [**User**](User.md)| Created user object | [optional] 
  **ct** | [**CancellationToken**](.md)|  | [optional] 
 
 ### Return type
@@ -72,8 +72,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/xml, application/json
+ - **Content-Type**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -83,13 +83,11 @@ No authorization required
 
 Creates list of users with given input array
 
-
-
 ### Example
 ```csharp
 using System;
 using System.Diagnostics;
-using PetShop.Clients;
+using ;
 using PetShop;
 using PetShop.Models;
 
@@ -101,7 +99,7 @@ namespace Example
         {
             
             var apiInstance = new UserApi();
-            var body = new List<User>(); // List<User> | List of user object
+            var body = new List<User>(); // List<User> | List of user object (optional) 
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
             try
@@ -122,7 +120,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**List<User>**](User.md)| List of user object | 
+ **body** | [**List<User>**](User.md)| List of user object | [optional] 
  **ct** | [**CancellationToken**](.md)|  | [optional] 
 
 ### Return type
@@ -135,8 +133,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/xml, application/json
+ - **Content-Type**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -146,13 +144,11 @@ No authorization required
 
 Creates list of users with given input array
 
-
-
 ### Example
 ```csharp
 using System;
 using System.Diagnostics;
-using PetShop.Clients;
+using ;
 using PetShop;
 using PetShop.Models;
 
@@ -164,7 +160,7 @@ namespace Example
         {
             
             var apiInstance = new UserApi();
-            var body = new List<User>(); // List<User> | List of user object
+            var body = new List<User>(); // List<User> | List of user object (optional) 
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
             try
@@ -185,7 +181,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**List<User>**](User.md)| List of user object | 
+ **body** | [**List<User>**](User.md)| List of user object | [optional] 
  **ct** | [**CancellationToken**](.md)|  | [optional] 
 
 ### Return type
@@ -198,8 +194,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/xml, application/json
+ - **Content-Type**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -215,7 +211,7 @@ This can only be done by the logged in user.
 ```csharp
 using System;
 using System.Diagnostics;
-using PetShop.Clients;
+using ;
 using PetShop;
 using PetShop.Models;
 
@@ -262,7 +258,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/xml, application/json
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -272,13 +268,11 @@ No authorization required
 
 Get user by user name
 
-
-
 ### Example
 ```csharp
 using System;
 using System.Diagnostics;
-using PetShop.Clients;
+using ;
 using PetShop;
 using PetShop.Models;
 
@@ -290,7 +284,7 @@ namespace Example
         {
             
             var apiInstance = new UserApi();
-            var username = username_example;  // string | The name that needs to be fetched. Use user1 for testing.
+            var username = username_example;  // string | The name that needs to be fetched. Use user1 for testing. 
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
             try
@@ -312,7 +306,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **username** | **string**| The name that needs to be fetched. Use user1 for testing. | 
+ **username** | **string**| The name that needs to be fetched. Use user1 for testing.  | 
  **ct** | [**CancellationToken**](.md)|  | [optional] 
 
 ### Return type
@@ -326,7 +320,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/xml, application/json
+ - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -336,13 +330,11 @@ No authorization required
 
 Logs user into the system
 
-
-
 ### Example
 ```csharp
 using System;
 using System.Diagnostics;
-using PetShop.Clients;
+using ;
 using PetShop;
 using PetShop.Models;
 
@@ -354,8 +346,8 @@ namespace Example
         {
             
             var apiInstance = new UserApi();
-            var username = username_example;  // string | The user name for login
-            var password = password_example;  // string | The password for login in clear text
+            var username = username_example;  // string | The user name for login (optional) 
+            var password = password_example;  // string | The password for login in clear text (optional) 
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
             try
@@ -377,8 +369,8 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **username** | **string**| The user name for login | 
- **password** | **string**| The password for login in clear text | 
+ **username** | **string**| The user name for login | [optional] 
+ **password** | **string**| The password for login in clear text | [optional] 
  **ct** | [**CancellationToken**](.md)|  | [optional] 
 
 ### Return type
@@ -392,7 +384,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/xml, application/json
+ - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -402,13 +394,11 @@ No authorization required
 
 Logs out current logged in user session
 
-
-
 ### Example
 ```csharp
 using System;
 using System.Diagnostics;
-using PetShop.Clients;
+using ;
 using PetShop;
 using PetShop.Models;
 
@@ -453,7 +443,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/xml, application/json
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -469,7 +459,7 @@ This can only be done by the logged in user.
 ```csharp
 using System;
 using System.Diagnostics;
-using PetShop.Clients;
+using ;
 using PetShop;
 using PetShop.Models;
 
@@ -482,7 +472,7 @@ namespace Example
             
             var apiInstance = new UserApi();
             var username = username_example;  // string | name that need to be deleted
-            var body = new User(); // User | Updated user object
+            var body = new User(); // User | Updated user object (optional) 
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
             try
@@ -504,7 +494,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **username** | **string**| name that need to be deleted | 
- **body** | [**User**](User.md)| Updated user object | 
+ **body** | [**User**](User.md)| Updated user object | [optional] 
  **ct** | [**CancellationToken**](.md)|  | [optional] 
 
 ### Return type
@@ -517,8 +507,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/xml, application/json
+ - **Content-Type**: application/json, application/xml
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

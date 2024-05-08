@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.CodeDom.Compiler;
 using System.Text;
@@ -7,9 +8,9 @@ using System.Text.Json.Serialization;
 namespace PetShop.Models;
 
 /// <summary>
-/// An order for a pets from the pet store
+/// 
 /// </summary>
-[GeneratedCode("swagger-codegen", "1.0")]
+[GeneratedCode("swagger-codegen", "unset")]
 public partial class Order 
 {
     /// <summary>
@@ -17,6 +18,12 @@ public partial class Order
     /// </summary>
     [JsonPropertyName("id")]
     public long? Id { get; set; }
+    
+    /// <summary>
+    /// Gets or Sets ClientRoles
+    /// </summary>
+    [JsonPropertyName("clientRoles")]
+    public Dictionary<string, ArrayList> ClientRoles { get; set; }
     
     /// <summary>
     /// Gets or Sets PetId
@@ -59,6 +66,7 @@ public partial class Order
       var sb = new StringBuilder();
       sb.Append("class Order {\n");
       sb.Append("  Id: ").Append(Id).Append("\n");
+      sb.Append("  ClientRoles: ").Append(ClientRoles).Append("\n");
       sb.Append("  PetId: ").Append(PetId).Append("\n");
       sb.Append("  Quantity: ").Append(Quantity).Append("\n");
       sb.Append("  ShipDate: ").Append(ShipDate).Append("\n");
