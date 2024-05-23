@@ -25,8 +25,8 @@ Add a new pet to the store
 using System;
 using System.Diagnostics;
 using ;
-using PetShop;
-using PetShop.Models;
+using IO.Swagger.Client;
+using IO.Swagger.Models;
 
 namespace Example
 {
@@ -34,12 +34,8 @@ namespace Example
     {
         public void main()
         {
-            
-            // Configure OAuth2 access token for authorization: petstore_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
-
-            var apiInstance = new PetApi();
-            var body = new Pet(); // Pet | Pet object that needs to be added to the store (optional) 
+            var apiInstance = new PetApi(new HttpClient(), "http://my-service.srv");
+            var body = new Pet(); // Pet | Pet object that needs to be added to the store
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
             try
@@ -60,16 +56,12 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Pet**](Pet.md)| Pet object that needs to be added to the store | [optional] 
+ **body** | [**Pet**](Pet.md)| Pet object that needs to be added to the store | 
  **ct** | [**CancellationToken**](.md)|  | [optional] 
 
 ### Return type
 
 void (empty response body)
-
-### Authorization
-
-[petstore_auth](../README.md#petstore_auth)
 
 ### HTTP request headers
 
@@ -89,8 +81,8 @@ Deletes a pet
 using System;
 using System.Diagnostics;
 using ;
-using PetShop;
-using PetShop.Models;
+using IO.Swagger.Client;
+using IO.Swagger.Models;
 
 namespace Example
 {
@@ -98,11 +90,7 @@ namespace Example
     {
         public void main()
         {
-            
-            // Configure OAuth2 access token for authorization: petstore_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
-
-            var apiInstance = new PetApi();
+            var apiInstance = new PetApi(new HttpClient(), "http://my-service.srv");
             var petId = 789;  // long? | Pet id to delete
             var apiKey = apiKey_example;  // string |  (optional) 
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
@@ -133,10 +121,6 @@ Name | Type | Description  | Notes
 
 void (empty response body)
 
-### Authorization
-
-[petstore_auth](../README.md#petstore_auth)
-
 ### HTTP request headers
 
  - **Content-Type**: Not defined
@@ -157,8 +141,8 @@ Multiple status values can be provided with comma separated strings
 using System;
 using System.Diagnostics;
 using ;
-using PetShop;
-using PetShop.Models;
+using IO.Swagger.Client;
+using IO.Swagger.Models;
 
 namespace Example
 {
@@ -166,12 +150,8 @@ namespace Example
     {
         public void main()
         {
-            
-            // Configure OAuth2 access token for authorization: petstore_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
-
-            var apiInstance = new PetApi();
-            var status = new List<string>(); // List<string> | Status values that need to be considered for filter (optional) 
+            var apiInstance = new PetApi(new HttpClient(), "http://my-service.srv");
+            var status = new List<string>(); // List<string> | Status values that need to be considered for filter
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
             try
@@ -193,21 +173,17 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **status** | [**List<string>**](string.md)| Status values that need to be considered for filter | [optional] 
+ **status** | [**List<string>**](string.md)| Status values that need to be considered for filter | 
  **ct** | [**CancellationToken**](.md)|  | [optional] 
 
 ### Return type
 
 [**List<Pet>**](Pet.md)
 
-### Authorization
-
-[petstore_auth](../README.md#petstore_auth)
-
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml
+ - **Accept**: application/xml, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -224,8 +200,8 @@ Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3
 using System;
 using System.Diagnostics;
 using ;
-using PetShop;
-using PetShop.Models;
+using IO.Swagger.Client;
+using IO.Swagger.Models;
 
 namespace Example
 {
@@ -233,12 +209,8 @@ namespace Example
     {
         public void main()
         {
-            
-            // Configure OAuth2 access token for authorization: petstore_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
-
-            var apiInstance = new PetApi();
-            var tags = new List<string>(); // List<string> | Tags to filter by (optional) 
+            var apiInstance = new PetApi(new HttpClient(), "http://my-service.srv");
+            var tags = new List<string>(); // List<string> | Tags to filter by
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
             try
@@ -260,21 +232,17 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tags** | [**List<string>**](string.md)| Tags to filter by | [optional] 
+ **tags** | [**List<string>**](string.md)| Tags to filter by | 
  **ct** | [**CancellationToken**](.md)|  | [optional] 
 
 ### Return type
 
 [**List<Pet>**](Pet.md)
 
-### Authorization
-
-[petstore_auth](../README.md#petstore_auth)
-
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml
+ - **Accept**: application/xml, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -284,15 +252,15 @@ Name | Type | Description  | Notes
 
 Find pet by ID
 
-Returns a pet when ID < 10.  ID > 10 or nonintegers will simulate API error conditions
+Returns a single pet
 
 ### Example
 ```csharp
 using System;
 using System.Diagnostics;
 using ;
-using PetShop;
-using PetShop.Models;
+using IO.Swagger.Client;
+using IO.Swagger.Models;
 
 namespace Example
 {
@@ -300,16 +268,8 @@ namespace Example
     {
         public void main()
         {
-            
-            // Configure API key authorization: api_key
-            Configuration.Default.ApiKey.Add("api_key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api_key", "Bearer");
-            // Configure OAuth2 access token for authorization: petstore_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
-
-            var apiInstance = new PetApi();
-            var petId = 789;  // long? | ID of pet that needs to be fetched
+            var apiInstance = new PetApi(new HttpClient(), "http://my-service.srv");
+            var petId = 789;  // long? | ID of pet to return
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
             try
@@ -331,21 +291,17 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **petId** | **long?**| ID of pet that needs to be fetched | 
+ **petId** | **long?**| ID of pet to return | 
  **ct** | [**CancellationToken**](.md)|  | [optional] 
 
 ### Return type
 
 [**Pet**](Pet.md)
 
-### Authorization
-
-[api_key](../README.md#api_key), [petstore_auth](../README.md#petstore_auth)
-
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml
+ - **Accept**: application/xml, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -360,8 +316,8 @@ Update an existing pet
 using System;
 using System.Diagnostics;
 using ;
-using PetShop;
-using PetShop.Models;
+using IO.Swagger.Client;
+using IO.Swagger.Models;
 
 namespace Example
 {
@@ -369,12 +325,8 @@ namespace Example
     {
         public void main()
         {
-            
-            // Configure OAuth2 access token for authorization: petstore_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
-
-            var apiInstance = new PetApi();
-            var body = new Pet(); // Pet | Pet object that needs to be added to the store (optional) 
+            var apiInstance = new PetApi(new HttpClient(), "http://my-service.srv");
+            var body = new Pet(); // Pet | Pet object that needs to be added to the store
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
             try
@@ -395,16 +347,12 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Pet**](Pet.md)| Pet object that needs to be added to the store | [optional] 
+ **body** | [**Pet**](Pet.md)| Pet object that needs to be added to the store | 
  **ct** | [**CancellationToken**](.md)|  | [optional] 
 
 ### Return type
 
 void (empty response body)
-
-### Authorization
-
-[petstore_auth](../README.md#petstore_auth)
 
 ### HTTP request headers
 
@@ -415,7 +363,7 @@ void (empty response body)
 
 <a name="updatepetwithform"></a>
 # **UpdatePetWithForm**
-> void UpdatePetWithForm (string petId, string name, string status, CancellationToken ct)
+> void UpdatePetWithForm (long? petId, string name, string status, CancellationToken ct)
 
 Updates a pet in the store with form data
 
@@ -424,8 +372,8 @@ Updates a pet in the store with form data
 using System;
 using System.Diagnostics;
 using ;
-using PetShop;
-using PetShop.Models;
+using IO.Swagger.Client;
+using IO.Swagger.Models;
 
 namespace Example
 {
@@ -433,12 +381,8 @@ namespace Example
     {
         public void main()
         {
-            
-            // Configure OAuth2 access token for authorization: petstore_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
-
-            var apiInstance = new PetApi();
-            var petId = petId_example;  // string | ID of pet that needs to be updated
+            var apiInstance = new PetApi(new HttpClient(), "http://my-service.srv");
+            var petId = 789;  // long? | ID of pet that needs to be updated
             var name = name_example;  // string |  (optional) 
             var status = status_example;  // string |  (optional) 
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
@@ -461,7 +405,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **petId** | **string**| ID of pet that needs to be updated | 
+ **petId** | **long?**| ID of pet that needs to be updated | 
  **name** | **string**|  | [optional] 
  **status** | **string**|  | [optional] 
  **ct** | [**CancellationToken**](.md)|  | [optional] 
@@ -469,10 +413,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 void (empty response body)
-
-### Authorization
-
-[petstore_auth](../README.md#petstore_auth)
 
 ### HTTP request headers
 
@@ -483,7 +423,7 @@ void (empty response body)
 
 <a name="uploadfile"></a>
 # **UploadFile**
-> void UploadFile (long? petId, string additionalMetadata, byte[] file, CancellationToken ct)
+> ModelApiResponse UploadFile (long? petId, string additionalMetadata, byte[] file, CancellationToken ct)
 
 uploads an image
 
@@ -492,8 +432,8 @@ uploads an image
 using System;
 using System.Diagnostics;
 using ;
-using PetShop;
-using PetShop.Models;
+using IO.Swagger.Client;
+using IO.Swagger.Models;
 
 namespace Example
 {
@@ -501,11 +441,7 @@ namespace Example
     {
         public void main()
         {
-            
-            // Configure OAuth2 access token for authorization: petstore_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
-
-            var apiInstance = new PetApi();
+            var apiInstance = new PetApi(new HttpClient(), "http://my-service.srv");
             var petId = 789;  // long? | ID of pet to update
             var additionalMetadata = additionalMetadata_example;  // string |  (optional) 
             var file = file_example;  // byte[] |  (optional) 
@@ -514,7 +450,8 @@ namespace Example
             try
             {
                 // uploads an image
-                apiInstance.UploadFile(petId, additionalMetadata, file, ct);
+                ModelApiResponse result = apiInstance.UploadFile(petId, additionalMetadata, file, ct);
+                Debug.WriteLine(result);
             }
             catch (Exception e)
             {
@@ -536,16 +473,12 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
-
-### Authorization
-
-[petstore_auth](../README.md#petstore_auth)
+[**ModelApiResponse**](ModelApiResponse.md)
 
 ### HTTP request headers
 
  - **Content-Type**: multipart/form-data
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

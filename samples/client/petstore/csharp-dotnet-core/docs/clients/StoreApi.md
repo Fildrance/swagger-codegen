@@ -23,8 +23,8 @@ For valid response try integer IDs with value < 1000. Anything above 1000 or non
 using System;
 using System.Diagnostics;
 using ;
-using PetShop;
-using PetShop.Models;
+using IO.Swagger.Client;
+using IO.Swagger.Models;
 
 namespace Example
 {
@@ -32,8 +32,7 @@ namespace Example
     {
         public void main()
         {
-            
-            var apiInstance = new StoreApi();
+            var apiInstance = new StoreApi(new HttpClient(), "http://my-service.srv");
             var orderId = orderId_example;  // string | ID of the order that needs to be deleted
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
@@ -62,10 +61,6 @@ Name | Type | Description  | Notes
 
 void (empty response body)
 
-### Authorization
-
-No authorization required
-
 ### HTTP request headers
 
  - **Content-Type**: Not defined
@@ -86,8 +81,8 @@ Returns a map of status codes to quantities
 using System;
 using System.Diagnostics;
 using ;
-using PetShop;
-using PetShop.Models;
+using IO.Swagger.Client;
+using IO.Swagger.Models;
 
 namespace Example
 {
@@ -95,13 +90,7 @@ namespace Example
     {
         public void main()
         {
-            
-            // Configure API key authorization: api_key
-            Configuration.Default.ApiKey.Add("api_key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api_key", "Bearer");
-
-            var apiInstance = new StoreApi();
+            var apiInstance = new StoreApi(new HttpClient(), "http://my-service.srv");
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
             try
@@ -129,20 +118,16 @@ Name | Type | Description  | Notes
 
 **Dictionary<string, int?>**
 
-### Authorization
-
-[api_key](../README.md#api_key)
-
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="getorderbyid"></a>
 # **GetOrderById**
-> Order GetOrderById (string orderId, CancellationToken ct)
+> Order GetOrderById (long? orderId, CancellationToken ct)
 
 Find purchase order by ID
 
@@ -153,8 +138,8 @@ For valid response try integer IDs with value <= 5 or > 10. Other values will ge
 using System;
 using System.Diagnostics;
 using ;
-using PetShop;
-using PetShop.Models;
+using IO.Swagger.Client;
+using IO.Swagger.Models;
 
 namespace Example
 {
@@ -162,9 +147,8 @@ namespace Example
     {
         public void main()
         {
-            
-            var apiInstance = new StoreApi();
-            var orderId = orderId_example;  // string | ID of pet that needs to be fetched
+            var apiInstance = new StoreApi(new HttpClient(), "http://my-service.srv");
+            var orderId = 789;  // long? | ID of pet that needs to be fetched
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
             try
@@ -186,21 +170,17 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderId** | **string**| ID of pet that needs to be fetched | 
+ **orderId** | **long?**| ID of pet that needs to be fetched | 
  **ct** | [**CancellationToken**](.md)|  | [optional] 
 
 ### Return type
 
 [**Order**](Order.md)
 
-### Authorization
-
-No authorization required
-
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml
+ - **Accept**: application/xml, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -215,8 +195,8 @@ Place an order for a pet
 using System;
 using System.Diagnostics;
 using ;
-using PetShop;
-using PetShop.Models;
+using IO.Swagger.Client;
+using IO.Swagger.Models;
 
 namespace Example
 {
@@ -224,9 +204,8 @@ namespace Example
     {
         public void main()
         {
-            
-            var apiInstance = new StoreApi();
-            var body = new Order(); // Order | order placed for purchasing the pet (optional) 
+            var apiInstance = new StoreApi(new HttpClient(), "http://my-service.srv");
+            var body = new Order(); // Order | order placed for purchasing the pet
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
             try
@@ -248,21 +227,17 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Order**](Order.md)| order placed for purchasing the pet | [optional] 
+ **body** | [**Order**](Order.md)| order placed for purchasing the pet | 
  **ct** | [**CancellationToken**](.md)|  | [optional] 
 
 ### Return type
 
 [**Order**](Order.md)
 
-### Authorization
-
-No authorization required
-
 ### HTTP request headers
 
- - **Content-Type**: */*
- - **Accept**: application/json, application/xml
+ - **Content-Type**: application/json
+ - **Accept**: application/xml, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

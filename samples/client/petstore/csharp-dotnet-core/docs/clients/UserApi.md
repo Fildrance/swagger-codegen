@@ -27,8 +27,8 @@ This can only be done by the logged in user.
 using System;
 using System.Diagnostics;
 using ;
-using PetShop;
-using PetShop.Models;
+using IO.Swagger.Client;
+using IO.Swagger.Models;
 
 namespace Example
 {
@@ -36,9 +36,8 @@ namespace Example
     {
         public void main()
         {
-            
-            var apiInstance = new UserApi();
-            var body = new User(); // User | Created user object (optional) 
+            var apiInstance = new UserApi(new HttpClient(), "http://my-service.srv");
+            var body = new User(); // User | Created user object
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
             try
@@ -59,20 +58,16 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**User**](User.md)| Created user object | [optional] 
+ **body** | [**User**](User.md)| Created user object | 
  **ct** | [**CancellationToken**](.md)|  | [optional] 
 
 ### Return type
 
 void (empty response body)
 
-### Authorization
-
-No authorization required
-
 ### HTTP request headers
 
- - **Content-Type**: */*
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -88,8 +83,8 @@ Creates list of users with given input array
 using System;
 using System.Diagnostics;
 using ;
-using PetShop;
-using PetShop.Models;
+using IO.Swagger.Client;
+using IO.Swagger.Models;
 
 namespace Example
 {
@@ -97,9 +92,8 @@ namespace Example
     {
         public void main()
         {
-            
-            var apiInstance = new UserApi();
-            var body = new List<User>(); // List<User> | List of user object (optional) 
+            var apiInstance = new UserApi(new HttpClient(), "http://my-service.srv");
+            var body = new List<User>(); // List<User> | List of user object
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
             try
@@ -120,20 +114,16 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**List<User>**](User.md)| List of user object | [optional] 
+ **body** | [**List<User>**](User.md)| List of user object | 
  **ct** | [**CancellationToken**](.md)|  | [optional] 
 
 ### Return type
 
 void (empty response body)
 
-### Authorization
-
-No authorization required
-
 ### HTTP request headers
 
- - **Content-Type**: */*
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -149,8 +139,8 @@ Creates list of users with given input array
 using System;
 using System.Diagnostics;
 using ;
-using PetShop;
-using PetShop.Models;
+using IO.Swagger.Client;
+using IO.Swagger.Models;
 
 namespace Example
 {
@@ -158,9 +148,8 @@ namespace Example
     {
         public void main()
         {
-            
-            var apiInstance = new UserApi();
-            var body = new List<User>(); // List<User> | List of user object (optional) 
+            var apiInstance = new UserApi(new HttpClient(), "http://my-service.srv");
+            var body = new List<User>(); // List<User> | List of user object
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
             try
@@ -181,20 +170,16 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**List<User>**](User.md)| List of user object | [optional] 
+ **body** | [**List<User>**](User.md)| List of user object | 
  **ct** | [**CancellationToken**](.md)|  | [optional] 
 
 ### Return type
 
 void (empty response body)
 
-### Authorization
-
-No authorization required
-
 ### HTTP request headers
 
- - **Content-Type**: */*
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -212,8 +197,8 @@ This can only be done by the logged in user.
 using System;
 using System.Diagnostics;
 using ;
-using PetShop;
-using PetShop.Models;
+using IO.Swagger.Client;
+using IO.Swagger.Models;
 
 namespace Example
 {
@@ -221,8 +206,7 @@ namespace Example
     {
         public void main()
         {
-            
-            var apiInstance = new UserApi();
+            var apiInstance = new UserApi(new HttpClient(), "http://my-service.srv");
             var username = username_example;  // string | The name that needs to be deleted
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
@@ -251,10 +235,6 @@ Name | Type | Description  | Notes
 
 void (empty response body)
 
-### Authorization
-
-No authorization required
-
 ### HTTP request headers
 
  - **Content-Type**: Not defined
@@ -273,8 +253,8 @@ Get user by user name
 using System;
 using System.Diagnostics;
 using ;
-using PetShop;
-using PetShop.Models;
+using IO.Swagger.Client;
+using IO.Swagger.Models;
 
 namespace Example
 {
@@ -282,8 +262,7 @@ namespace Example
     {
         public void main()
         {
-            
-            var apiInstance = new UserApi();
+            var apiInstance = new UserApi(new HttpClient(), "http://my-service.srv");
             var username = username_example;  // string | The name that needs to be fetched. Use user1 for testing. 
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
@@ -313,14 +292,10 @@ Name | Type | Description  | Notes
 
 [**User**](User.md)
 
-### Authorization
-
-No authorization required
-
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml
+ - **Accept**: application/xml, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -335,8 +310,8 @@ Logs user into the system
 using System;
 using System.Diagnostics;
 using ;
-using PetShop;
-using PetShop.Models;
+using IO.Swagger.Client;
+using IO.Swagger.Models;
 
 namespace Example
 {
@@ -344,10 +319,9 @@ namespace Example
     {
         public void main()
         {
-            
-            var apiInstance = new UserApi();
-            var username = username_example;  // string | The user name for login (optional) 
-            var password = password_example;  // string | The password for login in clear text (optional) 
+            var apiInstance = new UserApi(new HttpClient(), "http://my-service.srv");
+            var username = username_example;  // string | The user name for login
+            var password = password_example;  // string | The password for login in clear text
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
             try
@@ -369,22 +343,18 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **username** | **string**| The user name for login | [optional] 
- **password** | **string**| The password for login in clear text | [optional] 
+ **username** | **string**| The user name for login | 
+ **password** | **string**| The password for login in clear text | 
  **ct** | [**CancellationToken**](.md)|  | [optional] 
 
 ### Return type
 
 **string**
 
-### Authorization
-
-No authorization required
-
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml
+ - **Accept**: application/xml, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -399,8 +369,8 @@ Logs out current logged in user session
 using System;
 using System.Diagnostics;
 using ;
-using PetShop;
-using PetShop.Models;
+using IO.Swagger.Client;
+using IO.Swagger.Models;
 
 namespace Example
 {
@@ -408,8 +378,7 @@ namespace Example
     {
         public void main()
         {
-            
-            var apiInstance = new UserApi();
+            var apiInstance = new UserApi(new HttpClient(), "http://my-service.srv");
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
             try
@@ -436,10 +405,6 @@ Name | Type | Description  | Notes
 
 void (empty response body)
 
-### Authorization
-
-No authorization required
-
 ### HTTP request headers
 
  - **Content-Type**: Not defined
@@ -449,7 +414,7 @@ No authorization required
 
 <a name="updateuser"></a>
 # **UpdateUser**
-> void UpdateUser (string username, User body, CancellationToken ct)
+> void UpdateUser (User body, string username, CancellationToken ct)
 
 Updated user
 
@@ -460,8 +425,8 @@ This can only be done by the logged in user.
 using System;
 using System.Diagnostics;
 using ;
-using PetShop;
-using PetShop.Models;
+using IO.Swagger.Client;
+using IO.Swagger.Models;
 
 namespace Example
 {
@@ -469,16 +434,15 @@ namespace Example
     {
         public void main()
         {
-            
-            var apiInstance = new UserApi();
+            var apiInstance = new UserApi(new HttpClient(), "http://my-service.srv");
+            var body = new User(); // User | Updated user object
             var username = username_example;  // string | name that need to be deleted
-            var body = new User(); // User | Updated user object (optional) 
             var ct = new CancellationToken(); // CancellationToken |  (optional) 
 
             try
             {
                 // Updated user
-                apiInstance.UpdateUser(username, body, ct);
+                apiInstance.UpdateUser(body, username, ct);
             }
             catch (Exception e)
             {
@@ -493,21 +457,17 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | [**User**](User.md)| Updated user object | 
  **username** | **string**| name that need to be deleted | 
- **body** | [**User**](User.md)| Updated user object | [optional] 
  **ct** | [**CancellationToken**](.md)|  | [optional] 
 
 ### Return type
 
 void (empty response body)
 
-### Authorization
-
-No authorization required
-
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
+ - **Content-Type**: */*
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

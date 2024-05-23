@@ -5,12 +5,12 @@ using System.CodeDom.Compiler;
 using System.Text;
 using System.Text.Json.Serialization;
 
-namespace PetShop.Models;
+namespace IO.Swagger.Models;
 
 /// <summary>
-/// 
+/// A pet for sale in the pet store
 /// </summary>
-[GeneratedCode("swagger-codegen", "unset")]
+[GeneratedCode("swagger-codegen", "3.0.56-SNAPSHOT")]
 public partial class Pet 
 {
     /// <summary>

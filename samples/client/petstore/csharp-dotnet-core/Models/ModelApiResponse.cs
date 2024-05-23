@@ -8,22 +8,28 @@ using System.Text.Json.Serialization;
 namespace IO.Swagger.Models;
 
 /// <summary>
-/// A category for a pet
+/// Describes the result of uploading an image resource
 /// </summary>
 [GeneratedCode("swagger-codegen", "3.0.56-SNAPSHOT")]
-public partial class Category 
+public partial class ModelApiResponse 
 {
     /// <summary>
-    /// Gets or Sets Id
+    /// Gets or Sets Code
     /// </summary>
-    [JsonPropertyName("id")]
-    public long? Id { get; set; }
+    [JsonPropertyName("code")]
+    public int? Code { get; set; }
     
     /// <summary>
-    /// Gets or Sets Name
+    /// Gets or Sets Type
     /// </summary>
-    [JsonPropertyName("name")]
-    public string Name { get; set; }
+    [JsonPropertyName("type")]
+    public string Type { get; set; }
+    
+    /// <summary>
+    /// Gets or Sets Message
+    /// </summary>
+    [JsonPropertyName("message")]
+    public string Message { get; set; }
     
     
     /// <summary>
@@ -33,9 +39,10 @@ public partial class Category
     public override string ToString()  
     {
       var sb = new StringBuilder();
-      sb.Append("class Category {\n");
-      sb.Append("  Id: ").Append(Id).Append("\n");
-      sb.Append("  Name: ").Append(Name).Append("\n");
+      sb.Append("class ModelApiResponse {\n");
+      sb.Append("  Code: ").Append(Code).Append("\n");
+      sb.Append("  Type: ").Append(Type).Append("\n");
+      sb.Append("  Message: ").Append(Message).Append("\n");
       sb.Append("}\n");
       return sb.ToString();
     }
